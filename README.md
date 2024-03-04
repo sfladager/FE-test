@@ -26,6 +26,7 @@ You are tasked with creating a Next.js application that integrates web3 function
    - Use libraries for blockchain interactions.
 3. **Web3Modal WalletConnect Integration**
    - Implement Web3Modal to connect to web3 wallets such as MetaMask. Use the `@web3modal/wagmi` library for integration.
+   - The web3 Connect button should be placed in a navbar.
    - The connection button in the header should display "Connect" when the user is not connected to a wallet. Once connected, it should show the user's truncated Ethereum address (e.g., "0x12...ab34").
    - Make sure you are connected to Goerli if using ynETH or the network your token is on if using a different token.
 4. **Create a Web3 Context**
@@ -46,10 +47,11 @@ You are tasked with creating a Next.js application that integrates web3 function
      ```
    - This hook will be used to display token information on the main page.
 6. **Design the Main Page**
+   - Nav bar with any brand logo you want on the left, and a web3 connect button on the right.
    - On the main page, display three cards. Each card should show a piece of information fetched by your `useTokenData` hook (e.g., Token Symbol, Token Name, Token Decimals).
    - Ensure the cards are displayed in a row on medium breakpoints (md) and above, and stacked vertically on smaller screen sizes.
    - Below the cards, display the user's balance and the token supply in ether (human-readable) values.
-7. **Deposit Form**
+8. **Deposit Form**
 
 - Create a deposit function that allows the user to deposit tokens into the contract, and updates the users balance dynamically.
 - Feel free to use any past number converting logic you have implemented in the past to speed up setting up the deposit function.
