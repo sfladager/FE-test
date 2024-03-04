@@ -5,13 +5,12 @@
 You are tasked with creating a Next.js application that integrates web3 functions to display token information and user balance using TailwindCSS for styling. This test is designed to assess your skills in frontend development, particularly in using Next.js, TailwindCSS, and integrating with blockchain technologies using specific libraries.
 
 # Token to use
-
 - Token: ynETH
 - Chain: Goerli
 - Address: 0x0091626e15caFd0F6Bc96dE7F12CEe444c0a212d
 - Abi: Check the github repo. You can import the abi with the following import cmd: 'import YNETH_ABI from '@/{insert location}/ynETH.abi'
 - deposit function name: depositETH
-  ( you may also use any other token you want on any chain you wish that you can satisfy the requiremnts of this test with.)
+- You do no have to use ynETH. You may also use any other token you want on any chain you wish that you can satisfy the requiremnts of this test with.
 
 ### Requirements
 
