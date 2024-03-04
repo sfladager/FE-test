@@ -10,7 +10,7 @@ You are tasked with creating a Next.js application that integrates web3 function
 - Address: 0x0091626e15caFd0F6Bc96dE7F12CEe444c0a212d
 - Abi: Check the github repo. You can import the abi with the following import cmd: 'import YNETH_ABI from '@/{insert location}/ynETH.abi'
 - deposit function name: depositETH
-- You do no have to use ynETH. You may also use any other token you want on any chain you wish that you can satisfy the requiremnts of this test with.
+- You do no have to use ynETH. You may also use any other token you want on any chain you wish that satisfy the requiremnts of this test.
 
 ### Requirements
 
