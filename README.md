@@ -1,4 +1,4 @@
-## Frontend Developer Test Prompt
+## Frontend Developer Test
 
 ### Overview
 
@@ -26,7 +26,7 @@ You are tasked with creating a Next.js application that integrates web3 function
      - [`@tanstack/react-query`](https://tanstack.com/query/latest)
      - [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/docs/introduction)
    - Use libraries for blockchain interactions.
-3. **Web3Modal WalletConnect Integration**
+3. **RainbowKit Integration**
    - Implement Rainbow Kit to connect to web3 wallets such as MetaMask. custom connect button.
    - The connect wallet button should be placed in a navbar.
    - The connection button in the header should display "Connect" when the user is not connected to a wallet. Once connected, it should show the user's truncated Ethereum address (e.g., "0x12...ab34").
