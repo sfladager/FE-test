@@ -1,4 +1,6 @@
-const YNETH_ABI = [
+import { Abi } from 'viem'
+
+export const ynETHx_ABI: Abi = [
   { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
   { inputs: [], name: 'AccessControlBadConfirmation', type: 'error' },
   {
@@ -19,6 +21,9 @@ const YNETH_ABI = [
     name: 'AddressInsufficientBalance',
     type: 'error',
   },
+  { inputs: [], name: 'AdminZeroAddress', type: 'error' },
+  { inputs: [], name: 'AssetZeroAddress', type: 'error' },
+  { inputs: [], name: 'DepositFailed', type: 'error' },
   {
     inputs: [
       { internalType: 'address', name: 'spender', type: 'address' },
@@ -96,42 +101,21 @@ const YNETH_ABI = [
   { inputs: [], name: 'FailedInnerCall', type: 'error' },
   { inputs: [], name: 'InvalidInitialization', type: 'error' },
   { inputs: [], name: 'MathOverflowedMulDiv', type: 'error' },
-  { inputs: [], name: 'MinimumStakeBoundNotSatisfied', type: 'error' },
+  { inputs: [], name: 'NameEmpty', type: 'error' },
   { inputs: [], name: 'NotInitializing', type: 'error' },
+  { inputs: [], name: 'ReentrancyGuardReentrantCall', type: 'error' },
   {
     inputs: [{ internalType: 'address', name: 'token', type: 'address' }],
     name: 'SafeERC20FailedOperation',
     type: 'error',
   },
-  {
-    inputs: [
-      { internalType: 'uint256', name: 'ynETHAmount', type: 'uint256' },
-      { internalType: 'uint256', name: 'expectedMinimum', type: 'uint256' },
-    ],
-    name: 'StakeBelowMinimumynETHAmount',
-    type: 'error',
-  },
+  { inputs: [], name: 'SymbolEmpty', type: 'error' },
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'owner',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'spender',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'value',
-        type: 'uint256',
-      },
+      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
+      { indexed: true, internalType: 'address', name: 'spender', type: 'address' },
+      { indexed: false, internalType: 'uint256', name: 'value', type: 'uint256' },
     ],
     name: 'Approval',
     type: 'event',
@@ -139,44 +123,17 @@ const YNETH_ABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'sender',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'owner',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'assets',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'shares',
-        type: 'uint256',
-      },
+      { indexed: true, internalType: 'address', name: 'sender', type: 'address' },
+      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
+      { indexed: false, internalType: 'uint256', name: 'assets', type: 'uint256' },
+      { indexed: false, internalType: 'uint256', name: 'shares', type: 'uint256' },
     ],
     name: 'Deposit',
     type: 'event',
   },
   {
     anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: 'uint64',
-        name: 'version',
-        type: 'uint64',
-      },
-    ],
+    inputs: [{ indexed: false, internalType: 'uint64', name: 'version', type: 'uint64' }],
     name: 'Initialized',
     type: 'event',
   },
@@ -184,18 +141,8 @@ const YNETH_ABI = [
     anonymous: false,
     inputs: [
       { indexed: true, internalType: 'bytes32', name: 'role', type: 'bytes32' },
-      {
-        indexed: true,
-        internalType: 'bytes32',
-        name: 'previousAdminRole',
-        type: 'bytes32',
-      },
-      {
-        indexed: true,
-        internalType: 'bytes32',
-        name: 'newAdminRole',
-        type: 'bytes32',
-      },
+      { indexed: true, internalType: 'bytes32', name: 'previousAdminRole', type: 'bytes32' },
+      { indexed: true, internalType: 'bytes32', name: 'newAdminRole', type: 'bytes32' },
     ],
     name: 'RoleAdminChanged',
     type: 'event',
@@ -204,18 +151,8 @@ const YNETH_ABI = [
     anonymous: false,
     inputs: [
       { indexed: true, internalType: 'bytes32', name: 'role', type: 'bytes32' },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'account',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'sender',
-        type: 'address',
-      },
+      { indexed: true, internalType: 'address', name: 'account', type: 'address' },
+      { indexed: true, internalType: 'address', name: 'sender', type: 'address' },
     ],
     name: 'RoleGranted',
     type: 'event',
@@ -224,18 +161,8 @@ const YNETH_ABI = [
     anonymous: false,
     inputs: [
       { indexed: true, internalType: 'bytes32', name: 'role', type: 'bytes32' },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'account',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'sender',
-        type: 'address',
-      },
+      { indexed: true, internalType: 'address', name: 'account', type: 'address' },
+      { indexed: true, internalType: 'address', name: 'sender', type: 'address' },
     ],
     name: 'RoleRevoked',
     type: 'event',
@@ -243,39 +170,9 @@ const YNETH_ABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'staker',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'ethAmount',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'ynETHAmount',
-        type: 'uint256',
-      },
-    ],
-    name: 'Staked',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [
       { indexed: true, internalType: 'address', name: 'from', type: 'address' },
       { indexed: true, internalType: 'address', name: 'to', type: 'address' },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'value',
-        type: 'uint256',
-      },
+      { indexed: false, internalType: 'uint256', name: 'value', type: 'uint256' },
     ],
     name: 'Transfer',
     type: 'event',
@@ -283,36 +180,11 @@ const YNETH_ABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'sender',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'receiver',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'owner',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'assets',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'shares',
-        type: 'uint256',
-      },
+      { indexed: true, internalType: 'address', name: 'sender', type: 'address' },
+      { indexed: true, internalType: 'address', name: 'receiver', type: 'address' },
+      { indexed: true, internalType: 'address', name: 'owner', type: 'address' },
+      { indexed: false, internalType: 'uint256', name: 'assets', type: 'uint256' },
+      { indexed: false, internalType: 'uint256', name: 'shares', type: 'uint256' },
     ],
     name: 'Withdraw',
     type: 'event',
@@ -321,13 +193,6 @@ const YNETH_ABI = [
     inputs: [],
     name: 'DEFAULT_ADMIN_ROLE',
     outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'allocatedETHForDeposits',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
   },
@@ -397,20 +262,6 @@ const YNETH_ABI = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: 'receiver', type: 'address' }],
-    name: 'depositETH',
-    outputs: [{ internalType: 'uint256', name: 'shares', type: 'uint256' }],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'exchangeAdjustmentRate',
-    outputs: [{ internalType: 'uint16', name: '', type: 'uint16' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [{ internalType: 'bytes32', name: 'role', type: 'bytes32' }],
     name: 'getRoleAdmin',
     outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
@@ -439,21 +290,10 @@ const YNETH_ABI = [
   },
   {
     inputs: [
-      {
-        components: [
-          { internalType: 'address', name: 'admin', type: 'address' },
-          {
-            internalType: 'address',
-            name: 'stakingNodesManager',
-            type: 'address',
-          },
-          { internalType: 'contract IOracle', name: 'oracle', type: 'address' },
-          { internalType: 'contract IWETH', name: 'wETH', type: 'address' },
-        ],
-        internalType: 'struct ynETH.Init',
-        name: 'init',
-        type: 'tuple',
-      },
+      { internalType: 'contract IERC20', name: 'asset_', type: 'address' },
+      { internalType: 'string', name: 'name_', type: 'string' },
+      { internalType: 'string', name: 'symbol_', type: 'string' },
+      { internalType: 'address', name: 'admin_', type: 'address' },
     ],
     name: 'initialize',
     outputs: [],
@@ -502,13 +342,6 @@ const YNETH_ABI = [
     inputs: [],
     name: 'name',
     outputs: [{ internalType: 'string', name: '', type: 'string' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'oracle',
-    outputs: [{ internalType: 'contract IOracle', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
   },
@@ -572,13 +405,6 @@ const YNETH_ABI = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'stakingNodesManager',
-    outputs: [{ internalType: 'address', name: '', type: 'address' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [{ internalType: 'bytes4', name: 'interfaceId', type: 'bytes4' }],
     name: 'supportsInterface',
     outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
@@ -595,13 +421,6 @@ const YNETH_ABI = [
   {
     inputs: [],
     name: 'totalAssets',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'totalControlled',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
@@ -645,13 +464,5 @@ const YNETH_ABI = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
-  {
-    inputs: [{ internalType: 'uint256', name: 'ethAmount', type: 'uint256' }],
-    name: 'withdrawETH',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
+  { stateMutability: 'payable', type: 'receive' },
 ] as const
-
-export default YNETH_ABI
